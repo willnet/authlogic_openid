@@ -94,10 +94,12 @@ module AuthlogicOpenid
           self.remember_me = controller.params[:remember_me] == "true" if controller.params.key?(:remember_me)
           
           options = {
+           :required => klass.openid_required_fields,
+           :optional => klass.openid_optional_fields,
            :return_to => controller.url_for(:for_session => "1", :remember_me => remember_me?),
            :method => :post}
 
-          controller.send(:authenticate_with_open_id, openid_identifier, options) do |result, openid_identifier|
+          controller.send(:authenticate_with_open_id, openid_identifier, options) do |result, openid_identifier, registration|
             if result.unsuccessful?
               errors.add_to_base(result.message)
               return
@@ -107,7 +109,9 @@ module AuthlogicOpenid
             
             if !attempted_record
               if auto_register?
-                self.attempted_record = klass.new :openid_identifier=>openid_identifier
+                self.attempted_record = klass.new
+                attempted_record.openid_identifier = openid_identifier
+                attempted_record.send(:map_openid_registration, registration)
 
                 if ! attempted_record.save
                   errors.add(:openid_identifier, "error auto-registering new openid account")
