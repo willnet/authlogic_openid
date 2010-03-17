@@ -48,8 +48,7 @@ require "openid"
 Rails = true # to trick authlogic into loading the rails adapter
 require File.dirname(__FILE__) + "/../../authlogic/lib/authlogic"
 require File.dirname(__FILE__) + "/../../authlogic/lib/authlogic/test_case"
-#require File.dirname(__FILE__) + "/libs/rails_trickery"
-require File.dirname(__FILE__) + '/libs/open_id_authentication/lib/open_id_authentication'
+require File.dirname(__FILE__) + '/../../open_id_authentication/lib/open_id_authentication.rb'
 require File.dirname(__FILE__) + '/../lib/authlogic_openid'  unless defined?(AuthlogicOpenid)
 require File.dirname(__FILE__) + '/libs/user'
 require File.dirname(__FILE__) + '/libs/user_session'
