@@ -48,9 +48,9 @@ module AuthlogicOpenid
       end
       
       def openid_identifier=(value)
-        @openid_identifier = value.blank? ? nil : OpenIdAuthentication.normalize_identifier(value)
+        @openid_identifier = value.blank? ? nil : OpenID.normalize_url(value)
         @openid_error = nil
-      rescue OpenIdAuthentication::InvalidOpenId => e
+      rescue OpenID::DiscoveryFailure => e
         @openid_identifier = nil
         @openid_error = e.message
       end
