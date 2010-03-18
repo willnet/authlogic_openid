@@ -106,6 +106,7 @@ class ActiveSupport::TestCase
     end
     
     def redirecting_to_yahoo?
-      @response.redirected_to.to_s =~ /^https:\/\/open.login.yahooapis.com\/openid\/op\/auth/
+      expected = "OpenID identifier=\"https://me.yahoo.com/a/9W0FJjRj0o981TMSs0vqVxPdmMUVOQ--\", return_to=\"http://test.host/?for_model=1\", optional=\"\", method=\"post\", required=\"\""
+      @response.headers["WWW-Authenticate"] == expected
     end
 end
