@@ -4,7 +4,7 @@ class SessionTest < ActiveSupport::TestCase
   def test_openid_identifier
     session = UserSession.new
     assert session.respond_to?(:openid_identifier)
-    session.openid_identifier = "test"
+    session.openid_identifier = "http://test"
     assert_equal "http://test/", session.openid_identifier
   end
   
