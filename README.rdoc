@@ -35,7 +35,11 @@ Authlogic OpenID is an extension of the Authlogic library to add OpenID support.
 === 2. Install the openid_authentication plugin
 
   $ script/plugin install git://github.com/rails/open_id_authentication.git
-  $ rake open_id_authentication:db:create
+
+And add the required gems to your environment.rb:
+
+  config.gem "ruby-openid", :lib => false
+  config.gem "rack-openid", :lib => false
 
 For more information on how to configure the plugin, checkout it's README: http://github.com/rails/open_id_authentication/tree/master
 
