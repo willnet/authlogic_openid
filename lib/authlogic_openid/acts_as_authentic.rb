@@ -155,7 +155,7 @@ module AuthlogicOpenid
         end
         
         def openid_complete?
-          session_class.controller.params[:open_id_complete] && session_class.controller.params[:for_model]
+          session_class.controller.using_open_id? && session_class.controller.params[:for_model]
         end
         
         def authenticate_with_openid?

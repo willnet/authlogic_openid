@@ -75,7 +75,7 @@ module AuthlogicOpenid
       
       private
         def authenticating_with_openid?
-          attempted_record.nil? && errors.empty? && (!openid_identifier.blank? || (controller.params[:open_id_complete] && controller.params[:for_session]))
+          attempted_record.nil? && errors.empty? && (!openid_identifier.blank? || (controller.using_open_id? && controller.params[:for_session]))
         end
         
         def find_by_openid_identifier_method
