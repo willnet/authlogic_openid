@@ -50,7 +50,7 @@ class ActsAsAuthenticTest < ActiveSupport::TestCase
   def test_setting_openid_identifier_changed_persistence_token
     ben = users(:ben)
     old_persistence_token = ben.persistence_token
-    ben.openid_identifier = "new"
+    ben.openid_identifier = "http://new"
     assert_not_equal old_persistence_token, ben.persistence_token
   end
   
