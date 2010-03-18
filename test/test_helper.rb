@@ -105,8 +105,13 @@ class ActiveSupport::TestCase
       Authlogic::ControllerAdapters::RailsAdapter.new(c)
     end
     
-    def redirecting_to_yahoo?
-      expected = "OpenID identifier=\"https://me.yahoo.com/a/9W0FJjRj0o981TMSs0vqVxPdmMUVOQ--\", return_to=\"http://test.host/?for_model=1\", optional=\"\", method=\"post\", required=\"\""
-      @response.headers["WWW-Authenticate"] == expected
+    def assert_redirecting_to_yahoo(for_param)
+      [ /^OpenID identifier="https:\/\/me.yahoo.com\/a\/9W0FJjRj0o981TMSs0vqVxPdmMUVOQ--"/,
+        /return_to=\"http:\/\/test.host\/\?#{for_param}=1"/,
+        /method="post"/ ].each {|p| assert_match p, @response.headers["WWW-Authenticate"]}
+    end
+
+    def assert_not_redirecting
+      assert ! @response.headers["WWW-Authenticate"]
     end
 end
