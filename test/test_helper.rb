@@ -85,9 +85,6 @@ class ActiveSupport::TestCase
   setup :activate_authlogic
   
   private
-    def activate_authlogic
-      Authlogic::Session::Base.controller = controller
-    end
     
     def controller
       @controller ||= create_controller
