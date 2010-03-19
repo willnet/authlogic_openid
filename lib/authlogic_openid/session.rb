@@ -109,17 +109,17 @@ module AuthlogicOpenid
             
             if !attempted_record
               if auto_register?
-                self.attempted_record = klass.new
-                attempted_record.openid_identifier = openid_identifier
-                attempted_record.send(:map_openid_registration, registration)
-
-                if ! attempted_record.save
-                  errors.add(:openid_identifier, "error auto-registering new openid account")
+                auto_reg_record = klass.new
+                auto_reg_record.openid_identifier = openid_identifier
+                auto_reg_record.send(:map_openid_registration, registration)
+                
+                if !auto_reg_record.save
+                  auto_reg_record.errors.each {|attr, msg| errors.add(attr, msg) }
+                else
+                  self.attempted_record = auto_reg_record
                 end
-                return
               else
                 errors.add(:openid_identifier, "did not match any users in our database, have you set up your account to use OpenID?")
-                return
               end
             end
           end
