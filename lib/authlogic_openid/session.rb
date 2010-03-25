@@ -69,7 +69,7 @@ module AuthlogicOpenid
       # Cleaers out the block if we are authenticating with OpenID, so that we can redirect without a DoubleRender
       # error.
       def save(&block)
-        block = nil if !openid_identifier.blank?
+        block = nil if !openid_identifier.blank? && controller.request.env[Rack::OpenID::RESPONSE].blank?
         super(&block)
       end
       
