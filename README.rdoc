@@ -1,4 +1,4 @@
-= Authlogic OpenID
+= Authlogic OpenID (FORKED FROM mreinsch/authlogic_openid, in turn FORKED FROM binarylogic/authlogic_openid)
 
 Authlogic OpenID is an extension of the Authlogic library to add OpenID support. Authlogic v2.0 introduced an enhanced API that makes "plugging in" alternate authentication methods as easy as installing a gem.
 
