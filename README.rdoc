@@ -1,4 +1,16 @@
-= Authlogic OpenID (FORKED FROM mreinsch/authlogic_openid, in turn FORKED FROM binarylogic/authlogic_openid)
+= Differences from http://github.com/mreinsch/authlogic_openid
+
+mreinsch did a great job of updating this plugin so that it works with the updated ruby-openid and
+rack-openid gems.  The only thing missing for me was a gemspec so that I could use this with Rails 3
+under the new builder gem dependency framework.
+
+So, in fact, this fork is the same exact code as mreinsch's, but with a gemspec checked in so that,
+in a Rails 3 environment, I could do something like this:
+
+  gem "authlogic-oid", :require => "authlogic_openid", :git => "git://github.com/binaryfeed/authlogic_openid.git"
+
+
+= Authlogic OpenID
 
 Authlogic OpenID is an extension of the Authlogic library to add OpenID support. Authlogic v2.0 introduced an enhanced API that makes "plugging in" alternate authentication methods as easy as installing a gem.
 
