@@ -98,7 +98,7 @@ module AuthlogicOpenid
               @openid_error = result.message
             else
               self.openid_identifier = openid_identifier
-              map_openid_registration(registration)
+              # map_openid_registration(registration)
             end
             
             return true
