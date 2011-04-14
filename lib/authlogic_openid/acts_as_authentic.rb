@@ -127,11 +127,11 @@ module AuthlogicOpenid
         # more just override this method and do whatever you want.
         def attributes_to_save # :doc:
           attrs_to_save = attributes.clone.delete_if do |k, v|
-            [:id, :password, crypted_password_field, password_salt_field, :persistence_token, :perishable_token, :single_access_token, :login_count, 
-              :failed_login_count, :last_request_at, :current_login_at, :last_login_at, :current_login_ip, :last_login_ip, :created_at,
+            [:id, :password, :persistence_token, :perishable_token, :single_access_token, :login_count, 
+             :failed_login_count, :last_request_at, :current_login_at, :last_login_at, :current_login_ip, :last_login_ip, :created_at,
               :updated_at, :lock_version].include?(k.to_sym)
           end
-          attrs_to_save.merge!(:password => password, :password_confirmation => password_confirmation)
+          attrs_to_save
         end
         
         # This method works in conjunction with attributes_to_save. See that method for a description of the why these methods exist.
